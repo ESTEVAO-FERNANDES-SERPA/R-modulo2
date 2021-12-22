@@ -1,17 +1,19 @@
 import Modal from 'react-modal';
+import incomeImg from '../../assets/income.svg'
+import outcomeImg from '../../assets/outcome.svg'
 import closeImg from '../../assets/close.svg'
-import { Container } from './styles';
+import { Container, TransactionTypeContainer } from './styles';
 
 
 
 Modal.setAppElement('#root')
 
-interface NewTransactionModalProps{
+interface NewTransactionModalProps {
     isOpen: boolean
-    onRequestClose:() => void;
+    onRequestClose: () => void;
 }
 
-export function NewTransactionModal({isOpen,onRequestClose}:NewTransactionModalProps) {
+export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionModalProps) {
     return (
         <Modal
             isOpen={isOpen}
@@ -23,7 +25,7 @@ export function NewTransactionModal({isOpen,onRequestClose}:NewTransactionModalP
                 onClick={onRequestClose}
                 className="react-modal-close"
             >
-                <img src={closeImg} alt="Fechar nova transação"  />
+                <img src={closeImg} alt="Fechar nova transação" />
             </button>
 
             <Container>
@@ -31,16 +33,32 @@ export function NewTransactionModal({isOpen,onRequestClose}:NewTransactionModalP
 
                 <input
                     placeholder='Título'
-                 />
-                 <input
+                />
+                <input
                     type="number"
                     placeholder='Valor'
-                 />
-                 <input
-                    placeholder='Categoria'
-                 />
+                />
 
-                 <button type="submit" >Cadastrar</button>
+                <TransactionTypeContainer>
+                    <button
+                        type="button"
+                    >
+                        <img src={incomeImg} alt="Entrada" />
+                        <span>Entrada</span>
+                    </button>
+                    <button
+                        type="button"
+                    >
+                        <img src={outcomeImg} alt="Saída" />
+                        <span>Saída</span>
+                    </button>
+                </TransactionTypeContainer>
+
+                <input
+                    placeholder='Categoria'
+                />
+
+                <button type="submit" >Cadastrar</button>
 
             </Container>
         </Modal>
